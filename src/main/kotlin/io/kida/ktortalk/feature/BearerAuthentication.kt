@@ -7,7 +7,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.util.AttributeKey
 
-final class BearerAuthentication(val token: String): ApplicationFeature<ApplicationCallPipeline, Unit, Unit> {
+class BearerAuthentication(val token: String): ApplicationFeature<ApplicationCallPipeline, Unit, Unit> {
     override val key = AttributeKey<Unit>("Authentication")
 
     override fun install(pipeline: ApplicationCallPipeline, configure: Unit.() -> Unit) {
