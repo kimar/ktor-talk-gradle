@@ -2,7 +2,6 @@ package io.kida.ktortalk
 
 import com.github.kittinunf.fuel.core.FuelManager
 import io.kida.ktortalk.feature.BearerAuthentication
-import io.kida.ktortalk.route.graphQl
 import io.kida.ktortalk.route.rest
 import io.ktor.application.install
 import io.ktor.routing.routing
@@ -17,7 +16,6 @@ fun main(args: Array<String>) {
     val server = embeddedServer(Netty, 8080) {
         install(BearerAuthentication("passw0rd"))
         routing {
-            graphQl()
             rest()
         }
     }
