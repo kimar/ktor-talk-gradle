@@ -2,6 +2,7 @@ package io.kida.ktortalk
 
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.httpGet
+import io.kida.ktortalk.api.Motorcycles
 import io.kida.ktortalk.feature.BearerAuthentication
 import io.kida.ktortalk.model.Motorcycle
 import io.ktor.application.call
@@ -20,25 +21,10 @@ fun main(args: Array<String>) {
     val server = embeddedServer(Netty, 8080) {
         install(BearerAuthentication("passw0rd"))
         routing {
-            get(    "/") {
-                call.respondText(getMotorcycles().toString())
+            get("/") {
+                call.respondText(Motorcycles.getAll().toString())
             }
         }
     }
     server.start(wait = true)
-}
-
-suspend fun getMotorcycles(): List<Motorcycle> {
-    return suspendCoroutine {
-        "https://s.kida.io/mock-api/motorcycles.json".httpGet().responseObject(Motorcycle.ListDeserializer()) {
-            _, res, result ->
-
-            print(res)
-            print(result)
-            when(result.component1()) {
-                null -> it.resumeWithException(Throwable("No Motorcycles found"))
-                else -> it.resume(result.get())
-            }
-        }
-    }
 }
