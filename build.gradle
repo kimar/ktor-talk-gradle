@@ -23,6 +23,7 @@ repositories {
     mavenCentral()
     maven { url  "http://dl.bintray.com/kotlin/ktor" }
     maven { url "https://dl.bintray.com/kotlin/kotlinx" }
+    maven { url  "https://dl.bintray.com/pgutkowski/Maven" }
 }
 
 kotlin {
@@ -39,6 +40,7 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.25'
     compile 'com.github.kittinunf.fuel:fuel-gson:1.11.0'
     compile 'com.github.salomonbrys.kotson:kotson:2.5.0'
+    compile 'com.github.pgutkowski:kgraphql:0.2.4'
 }
 
 compileKotlin {
