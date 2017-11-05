@@ -18,8 +18,8 @@ fun main(args: Array<String>) {
     FuelManager.instance.baseHeaders = mapOf("User-Agent" to "Chrome")
 
     val server = embeddedServer(Netty, 8080) {
+        install(BearerAuthentication("passw0rd"))
         routing {
-            install(BearerAuthentication("passw0rd"))
             get(    "/") {
                 call.respondText(getMotorcycles().toString())
             }
