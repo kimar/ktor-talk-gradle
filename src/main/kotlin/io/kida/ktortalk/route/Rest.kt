@@ -40,7 +40,7 @@ suspend fun fetchMergedMotorcycles(): List<Motorcycle> {
     val models = fetchModels()
 
     return models.map { model ->
-        Motorcycle.fromModel(model, makes.filter { it.code == model.make}.first())
+        Motorcycle.fromModel(model, makes.first { it.code == model.make})
     }
 }
 
